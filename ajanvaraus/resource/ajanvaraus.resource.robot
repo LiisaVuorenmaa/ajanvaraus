@@ -7,7 +7,6 @@ Library   Collections
 Library   DateTime
 Library   Process
 Resource  ../variables/ajanvaraus_variables.robot
-#Resource  cookie_handling.resource.robot
 Resource  headless_browser.resource.robot
 
 Documentation       
@@ -66,9 +65,6 @@ Then we have moved to a private customer appointment site and page contains corr
      Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
      click element   ${tomorrow}
 
-     #Execute JavaScript  document.getElementById('fromTime').value='${fromTimeToSelect}'
-     #Execute JavaScript  document.getElementById('toTime').value='${toTimeToSelect}'
-
   
    ${newId}=   set variable   8                                        
    assign id to element   ${fromTimeInput}    ${newId}                                                                                                     
@@ -86,8 +82,10 @@ Then we have moved to a private customer appointment site and page contains corr
      capture page screenshot
      Execute JavaScript    window.scrollTo(700, 0)
      sleep   15s
+     
  When we select first free doctor from the list    
      click element   ${listItemFirstFreeDoctor}
+
  Then the page with a summary of your appointment will open 
 
     wait until element is visible   ${summaryBoxElement}  
